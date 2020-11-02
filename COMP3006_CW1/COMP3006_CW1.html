@@ -43,7 +43,6 @@
                 border-style:solid;
                 border-color:#101010;
                 border-width: 1px;
-
             }
             
 
@@ -52,6 +51,14 @@
         <script>
             $(window).on("load", function() {
                 // Your JS code goes here.
+
+                $('button').click(function(){
+                    $('#reset').attr("disabled",false);
+
+                })
+
+                
+
             });
         </script>
     </head>
@@ -81,7 +88,7 @@
                 <input type="text" id =temperature value = "Enter temperature">
                 <input type="checkbox" id = fahrenheit><br>
                 <label for = fahrenheit id = "fahrenheit_lbl">Fahrenheit</label>
-                <button type ="button" id = check value='Check temperature' disabled >Check temperature</button>
+                <button type ="button" id = check value='Check temperature' >Check temperature</button>
                 <button type ="button" id = reset value='Reset' disabled >Reset</button>
                 <P id=output></P>
                 <p id=date></p>
