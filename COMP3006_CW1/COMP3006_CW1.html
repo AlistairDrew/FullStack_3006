@@ -40,10 +40,11 @@
         <div id = monitor>
             <h1 id = heading>Temperature Monitor</h1>
             <form>
-                <input type="text" id =temperature>
-                <input type="checkbox" id = fahrenheit>
-                <label id = "fahrenheit_lbl" for = fahrenheit>fahrenheit</label>
-                
+                <input type="text" id =temperature value = "Enter temperature">
+                <input type="checkbox" id = fahrenheit><br>
+                <label for = fahrenheit id = "fahrenheit_lbl">Fahrenheit</label>
+                <button type ="button" id = check value='Check temperature' disabled >Check temperature</button>
+                <button type ="button" id = reset value='Reset' disabled >Reset</button>
                 <P id=output></P>
                 <p id=date></p>
             </form>
