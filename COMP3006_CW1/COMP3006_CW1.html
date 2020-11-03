@@ -106,16 +106,18 @@
 
         function check() {
             $('#reset').attr("disabled", false);
-            
-            Date.now();
-            $('#date').text(Date);
+            var date = new Date();
+            var val= date.getFullYear()+"-"+(date.getMonth()+1)+"-0"+ date.getDate();
+            $('#date').text(val);
 
         };
 
         function reset() {
-            $("#temperature").val('');
-            $("#output").val('');
+            $("#temperature").val("");
+            $("#output").html("");
             $("#output").css("background-color", "#ffffff ");
+            $("#date").text("");
+
         };
 
         function f2c(temp) {
