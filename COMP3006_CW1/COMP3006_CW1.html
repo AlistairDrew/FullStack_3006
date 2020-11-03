@@ -58,6 +58,21 @@
                 })
 
                 
+                $('#output').click(function(){
+                    let temperature = $("#temperature").val(); //Getting the content of the text input and putting it into a temp var
+                    
+                    if(temperature.val() <= 15){
+                        alert("Too cold")
+                        $("#ouput").css("background-color", "#6699ff")
+                        
+                    }
+
+
+
+                })
+                
+
+
 
             });
         </script>
