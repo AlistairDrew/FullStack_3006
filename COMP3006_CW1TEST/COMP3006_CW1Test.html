@@ -58,7 +58,7 @@
 
             $("#monitor").click(function () {
 
-                let temp = $("#temperature").val();
+                var temp = $("#temperature").val();
                 console.log(temp);
 
                 if ($(temp).val() <= '15') {
@@ -66,12 +66,12 @@
                     $("#output").css("background-color", "#6699ff");
                 }
 
-                if ($(temp).val() > '15' || $(this).val() <= '19') {
+                if ($(temp).val() > '15' & $(temp).val() <= '19') {
                     $('#output').text("Ideal");
                     $("#output").css("background-color", "#ffcc00");
                 }
 
-                if ($(temp).val() > '19' || $(this).val() <= '23') {
+                if ($(temp).val() > '19' & $(temp).val() <= '23') {
                     $('#output').text("Warm");
                     $("#output").css("background-color", "#ff9900");
                 }
