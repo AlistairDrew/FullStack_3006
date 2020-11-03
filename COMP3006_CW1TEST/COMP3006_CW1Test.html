@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://unpkg.com/mocha/mocha.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <title>Temperature Monitor</title>
+
+    <style>
+        /* Your CSS code goes here. */
+        body {
+            background-color: #ffff99;
+            font-family: "Arial";
+        }
+
+
+        #heading {
+            font-size: 24px;
+        }
+
+        #fahrenheit_lbl {
+            color: #1000fe;
+        }
+
+        #output {
+            width: 100px;
+        }
+
+        #reset {
+            background-color: #585858;
+            color: #ffffff;
+        }
+
+        #check {
+            background-color: #585858;
+            color: #ffffff;
+        }
+
+        #monitor {
+            background-color: #aeaeae;
+            width: 200px;
+            border-style: solid;
+            border-color: #101010;
+            border-width: 1px;
+        }
+    </style>
+
+    <script>
+        $(window).on("load", function () {
+            // Your JS code goes here.
+
+            $('#check').click(function () {
+
+                $('#reset').attr("disabled", false);
+            });
+
+            $("#monitor").click(function () {
+
+                let temp = $("#temperature").val();
+                console.log(temp);
+
+                if ($(temp).val() <= '15') {
+                    $('#output').text("Too cold");
+                    $("#output").css("background-color", "#6699ff");
+                }
+
+                if ($(temp).val() > '15' || $(this).val() <= '19') {
+                    $('#output').text("Ideal");
+                    $("#output").css("background-color", "#ffcc00");
+                }
+
+                if ($(temp).val() > '19' || $(this).val() <= '23') {
+                    $('#output').text("Warm");
+                    $("#output").css("background-color", "#ff9900");
+                }
+
+                if ($(temp).val() > '23') {
+                    $('#output').text("Too hot");
+                    $("#output").css("background-color", "#ff0000");
+                }
+
+            });
+
+            $("#reset").click(function(){
+
+                $("#temperature").empty();
+                $("#output").empty();
+                $("#output").css("background-color", "#ffffff")
+            })
+
+
+        });
+    </script>
+</head>
+
+<body>
+    <!-- Do not edit this section. -->
+    <div id="mocha" style="background-color: #fff"></div>
+
+    <script src="https://unpkg.com/chai/chai.js"></script>
+    <script src="https://unpkg.com/mocha/mocha.js"></script>
+
+    <script class="mocha-init">
+        mocha.setup('tdd');
+        mocha.checkLeaks();
+    </script>
+
+    <script src="COMP3006_CW1_Tests.js"></script>
+
+    <script class="mocha-exec">
+        mocha.run();
+    </script>
+
+    <!-- Your HTML code goes here. -->
+    <div id=monitor>
+        <h1 id=heading>Temperature Monitor</h1>
+        <form>
+            <input type="text" id=temperature value="Enter temperature">
+            <input type="checkbox" id=fahrenheit><br>
+            <label for=fahrenheit id="fahrenheit_lbl">Fahrenheit</label>
+            <button type="button" id=check value='Check temperature'>Check temperature</button>
+            <button type="button" id=reset value='Reset' disabled>Reset</button>
+            <P id=output></P>
+            <p id=date></p>
+        </form>
+    </div>
+
+</body>
+
+</html>
