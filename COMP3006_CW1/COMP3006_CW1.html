@@ -26,6 +26,7 @@
 
         #output {
             width: 100px;
+           
         }
 
         #reset {
@@ -106,8 +107,14 @@
 
         function check() {
             $('#reset').attr("disabled", false);
-            var date = new Date();
-            var val= date.getFullYear()+"-"+(date.getMonth()+1)+"-0"+ date.getDate();
+            var dateobj = new Date();
+            
+            var month = ('0' + (dateobj.getMonth()+1)).slice(-2);
+            var date = ('0' + dateobj.getDate()).slice(-2);
+            var year = dateobj.getFullYear();
+
+            var val= year + '-' + month + '-' + date;
+
             $('#date').text(val);
 
         };
@@ -115,8 +122,9 @@
         function reset() {
             $("#temperature").val("");
             $("#output").html("");
-            $("#output").css("background-color", "#ffffff ");
+            $("#output").css("background-color", "#ffffff");
             $("#date").text("");
+            console.log(1)
 
         };
 
