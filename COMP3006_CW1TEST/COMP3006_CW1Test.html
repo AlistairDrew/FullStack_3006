@@ -9,7 +9,7 @@
     <title>Temperature Monitor</title>
 
     <style>
-        /* All CSS for Temperatrue Monitor, organized by ID */
+        /* Your CSS code goes here. */
         body {
             background-color: #ffff99;
             font-family: "Arial";
@@ -49,87 +49,44 @@
 
     <script>
         $(window).on("load", function () {
-            // Calling all methods in jQuery 
+            // Your JS code goes here.
 
             $('#check').click(function () {
 
-                check();
-
+                $('#reset').attr("disabled", false);
             });
 
             $("#monitor").click(function () {
 
-                Monitor();
+                var temp = $("#temperature").val();
+                console.log(temp);
+
+                if ($(temp).val() <= 15) {
+                    $('#output').text("Too cold");
+                    $("#output").css("background-color", "#6699ff");
+                }else if ($(temp).val() > 15 & $(temp).val() <= 19) {
+                    $('#output').text("Ideal");
+                    $("#output").css("background-color", "#ffcc00");
+                }else if ($(temp).val() > 19 & $(temp).val() <= 23) {
+                    $('#output').text("Warm");
+                    $("#output").css("background-color", "#ff9900");
+                }else if($(temp).val() > 23) {
+                    $('#output').text("Too hot");
+                    $("#output").css("background-color", "#ff0000");
+                }
+
+
             });
 
-            $("#fahrenheit").click(function () {
-                fahrenheit();
-                f2c();
-                temp = tempC;
-            });
+            $("#reset").click(function(){
 
-            $("#reset").click(function () {
+                $("#temperature").empty();
+                $("#output").empty();
+                $("#output").css("background-color", "#ffffff")
+            })
 
-                reset();
-            });
 
         });
-        
-        //Created methods in jQuery
-
-        function Monitor() {
-
-            var temp = $("#temperature").val();
-            console.log(temp);
-
-
-            if (temp <= 15) {
-                $('#output').text("Too cold");
-                $("#output").css("background-color", "#6699ff");
-                //console.log(1);
-
-            } else if (temp > 15 & temp <= 19) {
-                $('#output').text("Ideal");
-                $("#output").css("background-color", "#ffcc00");
-                //console.log(2);
-            } else if (temp > 19 & temp <= 23) {
-                $('#output').text("Warm");
-                $("#output").css("background-color", "#ff9900");
-                //console.log(3);
-            } else if (temp > 23) {
-                $('#output').text("Too hot");
-                $("#output").css("background-color", "#ff0000");
-                //console.log(4);
-            };
-
-        };
-
-        function check() {
-            $('#reset').attr("disabled", false);
-            
-            Date.now();
-            $('#date').text(Date);
-
-        };
-
-        function reset() {
-            $("#temperature").val('');
-            $("#output").val('');
-            $("#output").css("background-color", "#ffffff ");
-        };
-
-        function f2c(temp) {
-            var tempC = (temp - 32) * 5 / 9;
-            return tempC;
-        };
-
-        function fahrenheit() {
-            if ("#fahrenheit" == (":checked")) {
-
-            }
-        };
-
-        
     </script>
 </head>
 
@@ -151,7 +108,7 @@
         mocha.run();
     </script>
 
-    <!--All HTML elements are located here for Temperatrue Monitor -->>
+    <!-- Your HTML code goes here. -->
     <div id=monitor>
         <h1 id=heading>Temperature Monitor</h1>
         <form>
