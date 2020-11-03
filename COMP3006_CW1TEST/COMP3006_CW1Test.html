@@ -61,25 +61,20 @@
                 var temp = $("#temperature").val();
                 console.log(temp);
 
-                if ($(temp).val() <= '15') {
+                if ($(temp).val() <= 15) {
                     $('#output').text("Too cold");
                     $("#output").css("background-color", "#6699ff");
-                }
-
-                if ($(temp).val() > '15' & $(temp).val() <= '19') {
+                }else if ($(temp).val() > 15 & $(temp).val() <= 19) {
                     $('#output').text("Ideal");
                     $("#output").css("background-color", "#ffcc00");
-                }
-
-                if ($(temp).val() > '19' & $(temp).val() <= '23') {
+                }else if ($(temp).val() > 19 & $(temp).val() <= 23) {
                     $('#output').text("Warm");
                     $("#output").css("background-color", "#ff9900");
-                }
-
-                if ($(temp).val() > '23') {
+                }else if($(temp).val() > 23) {
                     $('#output').text("Too hot");
                     $("#output").css("background-color", "#ff0000");
                 }
+
 
             });
 
