@@ -22,6 +22,7 @@
 
         #fahrenheit_lbl {
             color: #1000fe;
+
         }
 
         #output {
@@ -81,26 +82,26 @@
         function Monitor() {
 
             var temp = $("#temperature").val();
-            console.log(temp);
+            
 
 
-            if (temp <= 15) {
+            if (temp <= 15 & temp != ("")) {
                 $('#output').text("Too cold");
                 $("#output").css("background-color", "#6699ff");
-                //console.log(1);
+                
 
             } else if (temp > 15 & temp <= 19) {
                 $('#output').text("Ideal");
                 $("#output").css("background-color", "#ffcc00");
-                //console.log(2);
+                
             } else if (temp > 19 & temp <= 23) {
                 $('#output').text("Warm");
                 $("#output").css("background-color", "#ff9900");
-                //console.log(3);
-            } else if (temp > 23) {
+               
+            } else if (temp > 23 || temp != ("")) {
                 $('#output').text("Too hot");
                 $("#output").css("background-color", "#ff0000");
-                //console.log(4);
+                
             };
 
         };
@@ -109,7 +110,7 @@
             $('#reset').attr("disabled", false);
             var dateobj = new Date();
             
-            var month = ('0' + (dateobj.getMonth()+1)).slice(-2);
+            var month = ('0' + (dateobj.getMonth()+1)).slice(-2);  //Uses slice to
             var date = ('0' + dateobj.getDate()).slice(-2);
             var year = dateobj.getFullYear();
 
@@ -124,13 +125,15 @@
             $("#output").html("");
             $("#output").css("background-color", "#ffffff");
             $("#date").text("");
-            console.log(1)
+            
 
         };
 
         function f2c(temp) {
             var tempC = (temp - 32) * 5 / 9;
+            $('#output').css("background-color", "#6699ff");
             return tempC;
+            
         };
 
         function fahrenheit() {
@@ -161,7 +164,7 @@
         mocha.run();
     </script>
 
-    <!--All HTML elements are located here for Temperatrue Monitor -->>
+    <!--All HTML elements are located here for Temperatrue Monitor -->
     <div id=monitor>
         <h1 id=heading>Temperature Monitor</h1>
         <form>
