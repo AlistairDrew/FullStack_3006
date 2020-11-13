@@ -1,0 +1,19 @@
+body {
+   background-color: lightseagreen;
+    
+}
+
+.centre{
+    text-align: center;
+    display:flex;
+    flex-direction: column;
+    padding-left: 30%;
+    padding-right: 30%;
+}
+
+form{
+    display: inline;
+    display:flex;
+    flex-direction: column;
+}
+

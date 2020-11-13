@@ -7,10 +7,6 @@ function changeColour() {
        {
          el.style.backgroundColor = "#ffff00";
        }
-   
-    
-   
-   
        else if (rgb2hex(el.style.backgroundColor) == "#ffff00") {
          el.style.backgroundColor = "#ff00ff ";
        } 
@@ -18,9 +14,6 @@ function changeColour() {
         el.style.backgroundColor = "#00ffff";
       }
       else {
-   
-    
-   
         el.style.backgroundColor = "#00ffff";
       }
    }
