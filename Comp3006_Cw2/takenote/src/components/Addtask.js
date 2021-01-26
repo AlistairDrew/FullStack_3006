@@ -5,7 +5,7 @@ export default class Addtask extends Component {
         return (
             <div>
                 <form>
-                    <input type ="text" className="form-control rounded-0"></input>
+                    <input type ="text" className="form-control rounded-0" placeholder="Write your task here ..."/>
                     <button className="form-control rounded-0 btn-secondary" type="submit">Add Task</button>
                 </form>
             </div>
