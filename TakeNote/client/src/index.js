@@ -1,4 +1,4 @@
-import React from 'react'; //add in useEffect
+import React, { useState } from 'react'; //add in useEffect
 import ReactDOM from 'react-dom';
 //import './index.css';
 //import App from './App';
@@ -6,40 +6,40 @@ import ReactDOM from 'react-dom';
 
 function App() {
 
-  const snippets = [
-    {
-      title: "Snippet 1",
-    },
-    {
-      title: "Snippet 2",
-    },
-    {
-      title: "Snippet 3",
-    },
-  ];
+const [formUsename, setFormUsername] = useState("");
+const [formPassword, setFormPassword] = useState("");
 
-  function renderSnippets() {
-    
-    return snippets.map((snippet, i)=> {
-      return <Snippet title={snippet.title} key={i}/>
-    })
-    
-  }
+    function sendData(e){
+      e.preventDefault();
+      
+      //sending data
+      setFormUsername("");
+      setFormPassword("");
+
+    }
+  
 
   return (
     <>
-      {renderSnippets()}
+     <form onSubmit={sendData}>
+       <input type="text" 
+       placeholder="Username" 
+       onChange={(e)=> setFormUsername(e.target.value)}
+       value={setFormUsername}
+       />
+
+       <input type="password" 
+       placeholder="Password"
+       onChange={(e)=> setFormPassword(e.target.value)}
+       value={setFormPassword}
+       />
+       <button type="submit" placeholder="Submit">Log in</button> 
+     </form>
+
+
     </>
   );
-
-  function Snippet(props) {
-    return <h1>{props.title}</h1>;
-  }
-
 }
-
-
-
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
