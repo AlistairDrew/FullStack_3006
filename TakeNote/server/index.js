@@ -1,5 +1,8 @@
 const express = require("express"); //import whatever is exported from express files 
 const mongoose = require("mongoose");
+const dotenv = require("dotenv");
+
+dotenv.config();
 
 // setup express server
 
@@ -15,7 +18,7 @@ app.use("/snippet", require("./routers/snippetRouter")); //whenever request come
 
 //Connect to mongoDB
 
-mongoose.connect("mongodb+srv://takenote:csvOV4pOSidwSeJN@take-note.j23uw.mongodb.net/main?retryWrites=true&w=majority", {
+mongoose.connect(process.env.MDB_CONNECT_STRING, {
     useNewUrlParser: true, 
     useUnifiedTopology: true
 }, (err) =>{
