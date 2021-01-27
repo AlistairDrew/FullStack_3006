@@ -1,43 +1,47 @@
-import React, {useState} from 'react'; //add in useEffect
+import React from 'react'; //add in useEffect
 import ReactDOM from 'react-dom';
 //import './index.css';
 //import App from './App';
 
 
-function App(){
+function App() {
 
-  // const [message,setMessage] = useState("Hello world");
+  const snippets = [
+    {
+      title: "Snippet 1",
+    },
+    {
+      title: "Snippet 2",
+    },
+    {
+      title: "Snippet 3",
+    },
+  ];
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setMessage("Hi There");
-  //   }, 2000);
-  // }, []); //empty dependency array makes component run once, prevents infinite loop and memory leak
+  function renderSnippets() {
+    
+    return snippets.map((snippet, i)=> {
+      return <Snippet title={snippet.title} key={i}/>
+    })
+    
+  }
 
-  
-
-  return(
+  return (
     <>
-  {/* <Welcome user = "Jane Doe" message={message}/>
-  <Welcome user = "John Doe" message={message}/>
-  <Welcome user = "Peter Doe" message={message}/> */}
-  
-
-  </>
+      {renderSnippets()}
+    </>
   );
+
+  function Snippet(props) {
+    return <h1>{props.title}</h1>;
+  }
+
 }
 
-// function Welcome(props){
-//   return (
-//   <>
-//   <h1>Welcome {props.user} to this site</h1>
-//   <p>{props.message}</p>
-//   </>
-//   );
-// }
 
 
-ReactDOM.render(<App/>, document.getElementById('root'));
+
+ReactDOM.render(<App />, document.getElementById('root'));
 
 
 
