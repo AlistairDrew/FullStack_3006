@@ -1,11 +1,11 @@
 const router = require("express").Router();
-const Snippet = require("../models/snippetModel");
+const Task = require("../models/taskModel");
 
 router.get("/", async (req, res) =>{ //Reading from database
     try{
 
-    const snippets = await Snippet.find();
-    res.json(snippets);
+    const tasks = await Task.find();
+    res.json(tasks);
         console.log("Is this working");
     }
     catch(err){
@@ -23,13 +23,13 @@ router.post("/", async (req,res) =>{ //Updating the database
             return res.status(400).json({ errorMessage: "You need to enter at least a discription or some code" });
         }
 
-        const newSnippet = new Snippet({
+        const newTask = new Task({
             title, description, code      //create new snippet using model created from mongoose
         });
 
-        const savedSnippet = await newSnippet.save(); //save snippet to database but also waits for promise to be resolved and returns document 
+        const savedTask = await newTask.save(); //save snippet to database but also waits for promise to be resolved and returns document 
 
-        res.json(savedSnippet);
+        res.json(savedTask);
     }
     catch (err) {
         res.status(500).send();
@@ -39,7 +39,7 @@ router.post("/", async (req,res) =>{ //Updating the database
 router.put("/:id", async (req, res) =>{ //Update database 
     try {
         const{title,description,code} = req.body;
-        const snippetID = req.params.id;
+        const taskID = req.params.id;
 
         //validation
 
@@ -47,19 +47,19 @@ router.put("/:id", async (req, res) =>{ //Update database
             return res.status(400).json({ errorMessage: "You need to enter at least a discription or some code" });
         }
 
-        if (!snippetID)
-            return res.status(400).json({ errorMessage: "Snippet ID not given" });
+        if (!taskID)
+            return res.status(400).json({ errorMessage: "Task ID not given" });
 
-        const originalSnippet = await Snippet.findById(snippetID);
-        if (!originalSnippet)
-            return res.status(400).json({ errorMessage: "No Snippet ID found" });
+        const originalTask = await Task.findById(taskID);
+        if (!originalTask)
+            return res.status(400).json({ errorMessage: "No Task ID found" });
 
-        originalSnippet.title = title;
-        originalSnippet.description = description;
-        originalSnippet.code = code;
+        originalTask.title = title;
+        originalTask.description = description;
+        originalTask.code = code;
 
-        const savedSnippet = await originalSnippet.save();
-        res.json(savedSnippet);
+        const savedTask = await originalTask.save();
+        res.json(savedTask);
     }
     catch (err) {
         res.status(500).send();
@@ -77,20 +77,20 @@ router.put("/:id", async (req, res) =>{ //Update database
 router.delete("/:id", async (req, res) => { //colon means its a parameter and express put it into req object / Delete item from database
     try {
 
-        const snippetID = req.params.id;
+        const taskID = req.params.id;
 
         //validation
 
-        if (!snippetID)
-            return res.status(400).json({ errorMessage: "Snippet ID not given" });
+        if (!taskID)
+            return res.status(400).json({ errorMessage: "Task ID not given" });
 
-        const existingSnippet = await Snippet.findById(snippetID);
-        if (!existingSnippet)
-            return res.status(400).json({ errorMessage: "No Snippet ID found" });
+        const existingTask = await Task.findById(taskID);
+        if (!existingTask)
+            return res.status(400).json({ errorMessage: "No Task ID found" });
 
-        await existingSnippet.delete();
+        await existingTask.delete();
 
-        res.json(existingSnippet);
+        res.json(existingTask);
     }
     catch (err) {
         res.status(500).send();

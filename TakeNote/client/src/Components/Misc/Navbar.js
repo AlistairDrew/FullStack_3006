@@ -7,8 +7,8 @@ function Navbar() {
         <h1>Take Note</h1>
         </Link>
 
-        <Link to="/Login">Log In</Link>
-        <Link to="/Register">Register</Link>
+        <Link to="/chat">Chat</Link>
+        {/* <Link to="/Register">Register</Link> */}
     
 
     </div>

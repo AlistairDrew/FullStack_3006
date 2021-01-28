@@ -20,7 +20,7 @@ app.listen(5000, () => console.log("server started on port 5000")); //deciding t
 
 //set up routers
 
-app.use("/snippet", require("./routers/snippetRouter")); //whenever request comes in with /snippet use this (snippetRouter) as the middleware
+app.use("/task", require("./routers/taskRouter")); //whenever request comes in with /snippet use this (snippetRouter) as the middleware
 
 //Connect to mongoDB
 

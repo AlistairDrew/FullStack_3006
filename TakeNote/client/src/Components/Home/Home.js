@@ -1,37 +1,37 @@
 import React, { useEffect, useState } from "react";
 import Axios from "axios";
-import Snippet from "./Snippet";
+import Task from "./Task";
 import TaskEditor from "./TaskEditor";
 
 function Home() {
-    const [snippets, setSnippets] = useState([]);
-    const [snippetEditorOpen, setSnippetEditorOpen] = useState(false);
+    const [tasks, setTasks] = useState([]);
+    const [taskEditorOpen, setTaskEditorOpen] = useState(false);
     const [editTaskData, setEditTaskData] = useState(null);
 
     useEffect(() => {
-        //Get snippets 
-        getSnippets();
+        //Get tasks
+        getTasks();
     }, [])
 
-    async function getSnippets() {
-        const snippetsRes = await Axios.get("http://localhost:5000/snippet/");
-        setSnippets(snippetsRes.data);
+    async function getTasks() {
+        const tasksRes = await Axios.get("http://localhost:5000/task/");
+        setTasks(tasksRes.data);
     }
 
-    function editTask(snippetData){
-        setEditTaskData(snippetData);
-        setSnippetEditorOpen(true);
+    function editTask(taskData){
+        setEditTaskData(taskData);
+        setTaskEditorOpen(true);
     }
 
-    function renderSnippets() {
+    function renderTasks() {
 
-        let sortedSnippets = [...snippets];
-        sortedSnippets = sortedSnippets.sort((a, b) =>{
+        let sortedTasks = [...tasks];
+        sortedTasks = sortedTasks.sort((a, b) =>{
             return new Date(b.createdAt) - new Date(a.createdAt);
         })
 
-        return sortedSnippets.map((snippet, i) => {
-            return <Snippet key={i} snippet={snippet} getSnippets={getSnippets} 
+        return sortedTasks.map((task, i) => {
+            return <Task key={i} task={task} getTasks={getTasks} 
             editTask={editTask}
             />
         });
@@ -43,19 +43,19 @@ function Home() {
 
     return (
         <div className="home">
-            {!snippetEditorOpen && ( 
-            <button onClick={() => setSnippetEditorOpen(true)}>
-                Add snippet
+            {!taskEditorOpen && ( 
+            <button onClick={() => setTaskEditorOpen(true)}>
+                Add task
             </button>
             )}
-            {snippetEditorOpen && (
+            {taskEditorOpen && (
                 <TaskEditor 
-                setNewSnippetEditorOpen={setSnippetEditorOpen}
-                getSnippets={getSnippets}
+                setTaskEditorOpen={setTaskEditorOpen}
+                getTasks={getTasks}
                 editTaskData={editTaskData}
                 />
             )}
-            {renderSnippets()}
+            {renderTasks()}
         </div>
     )}
 

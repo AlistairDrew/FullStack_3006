@@ -2,7 +2,7 @@ import React,{useState, useEffect} from "react";
 import Axios from "axios";
 
 
-function TaskEditor({getSnippets, setSnippetEditorOpen, editTaskData}){
+function TaskEditor({getTasks, setTaskEditorOpen, editTaskData}){
     const [editorTitle, setEditorTitle] = useState("")
     const [editorDescription, setEditorDescription] = useState("")
     const [editorCode, setEditorCode] = useState("")
@@ -17,34 +17,35 @@ function TaskEditor({getSnippets, setSnippetEditorOpen, editTaskData}){
         }
     },[editTaskData]);
 
-    async function saveSnippet(e) {
+    async function saveTask(e) {
         e.preventDefault();
 
-        const snippetData = {
+        const taskData = {
             title: editorTitle ? editorTitle : undefined, //prevents empty strings from being put into the database
             description: editorDescription ? editorDescription : undefined,
             code: editorCode ? editorCode : undefined
         };
 
         if (!editTaskData)
-            await Axios.post("http://localhost:5000/snippet", snippetData);
+            await Axios.post("http://localhost:5000/task", taskData);
         else
-            await Axios.put(`http://localhost:5000/snippet/${editTaskData._id}`, snippetData);
+            await Axios.put(`http://localhost:5000/task/${editTaskData._id}`, taskData);
 
-        getSnippets();
+        getTasks();
         closeEditor();
     }
 
     function closeEditor() {
-        setSnippetEditorOpen(false);
+        setTaskEditorOpen(false);
         setEditorTitle("");
         setEditorDescription("");
         setEditorCode("");
     };
 
+
     return <div className="Name">
-        <div className="snippet-editor">
-                <form onSubmit={saveSnippet}>
+        <div className="task-editor">
+                <form onSubmit={saveTask}>
                     <label htmlFor="editor-title">Title</label>
                     <input 
                     id="editor-title" 
@@ -71,5 +72,5 @@ function TaskEditor({getSnippets, setSnippetEditorOpen, editTaskData}){
             </div>
     </div>
 };
-
+//k
 export default TaskEditor;
