@@ -1,7 +1,8 @@
 {
   "scripts": {
     "start": "node index",
-    "dev": "nodemon index"
+    "dev": "nodemon index",
+    "test": "test --passWithNoTests"
   },
   "dependencies": {
     "cors": "^2.8.5",

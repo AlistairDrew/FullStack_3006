@@ -6,7 +6,7 @@ router.get("/", async (req, res) =>{ //Reading from database
 
     const tasks = await Task.find();
     res.json(tasks);
-        console.log("Is this working");
+        //console.log("Is this working");
     }
     catch(err){
         res.status(500).send(); //Error Message for internal server error
