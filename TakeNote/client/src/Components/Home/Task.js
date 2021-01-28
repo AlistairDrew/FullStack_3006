@@ -15,8 +15,8 @@ async function deleteTask(){
     return <div className="Task">
         {task.title && <h2>{task.title}</h2> }
         {task.description && <p>{task.description}</p>}
-        {task.code && ( <pre>
-            <code>{task.code}</code>
+        {task.note && ( <pre>
+            <code>{task.note}</code>
             </pre>
             )}
             <button onClick={()=> editTask(task)}>Edit</button>

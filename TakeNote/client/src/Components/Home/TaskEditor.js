@@ -5,7 +5,7 @@ import Axios from "axios";
 function TaskEditor({getTasks, setTaskEditorOpen, editTaskData}){
     const [editorTitle, setEditorTitle] = useState("")
     const [editorDescription, setEditorDescription] = useState("")
-    const [editorCode, setEditorCode] = useState("")
+    const [editorNote, setEditorNote] = useState("")
 
 
 
@@ -13,7 +13,7 @@ function TaskEditor({getTasks, setTaskEditorOpen, editTaskData}){
         if(editTaskData){
             setEditorTitle(editTaskData.title ? editTaskData.title : "");
             setEditorDescription(editTaskData.description ? editTaskData.description : "");
-            setEditorCode(editTaskData.code ? editTaskData.code : "");
+            setEditorNote(editTaskData.note ? editTaskData.note : "");
         }
     },[editTaskData]);
 
@@ -23,7 +23,7 @@ function TaskEditor({getTasks, setTaskEditorOpen, editTaskData}){
         const taskData = {
             title: editorTitle ? editorTitle : undefined, //prevents empty strings from being put into the database
             description: editorDescription ? editorDescription : undefined,
-            code: editorCode ? editorCode : undefined
+            note: editorNote ? editorNote : undefined
         };
 
         if (!editTaskData)
@@ -39,7 +39,7 @@ function TaskEditor({getTasks, setTaskEditorOpen, editTaskData}){
         setTaskEditorOpen(false);
         setEditorTitle("");
         setEditorDescription("");
-        setEditorCode("");
+        setEditorNote("");
     };
 
 
@@ -60,11 +60,11 @@ function TaskEditor({getTasks, setTaskEditorOpen, editTaskData}){
                     value={editorDescription}
                     onChange={(e) => setEditorDescription(e.target.value)}/>
 
-                    <label htmlFor="editor-code">Code</label>
+                    <label htmlFor="editor-note">Note</label>
                     <textarea 
-                    id="editor-code" 
-                    value={editorCode}
-                    onChange={(e) => setEditorCode(e.target.value)}/>
+                    id="editor-note" 
+                    value={editorNote}
+                    onChange={(e) => setEditorNote(e.target.value)}/>
 
                 <button type="submit">Save Task</button>
                 <button type="button" onClick={closeEditor}>Cancel</button>

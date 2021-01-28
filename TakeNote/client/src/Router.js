@@ -11,7 +11,7 @@ function Router(){
             <Home/>
             </Route>
         <Route path = "/Chat">Chat</Route>
-        {/* <Route path = "/register">Register</Route> */}
+        
             
             
     </Switch>
