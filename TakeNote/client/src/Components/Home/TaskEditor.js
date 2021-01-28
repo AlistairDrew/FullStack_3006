@@ -42,10 +42,10 @@ function TaskEditor({getTasks, setTaskEditorOpen, editTaskData}){
         setEditorNote("");
     };
 
-
+//Different input fields for Title, Description and Note.
     return <div className="Name">
         <div className="task-editor">
-                <form onSubmit={saveTask}> //Different input fields for title, description and Note.
+                <form onSubmit={saveTask}> 
                     <label htmlFor="editor-title">Title</label>
                     <input 
                     id="editor-title" 

@@ -36,7 +36,7 @@ function Home() {
         });
     }
     return (
-        <div className="home"> //Button that adds a task
+        <div className="home"> 
             {!taskEditorOpen && ( 
             <button onClick={() => setTaskEditorOpen(true)}>
                 Add task

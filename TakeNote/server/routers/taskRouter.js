@@ -9,7 +9,7 @@ router.get("/", async (req, res) =>{ //Reading from database
         console.log("Is this working");
     }
     catch(err){
-        res.status(500).send();
+        res.status(500).send(); //Error Message for internal server error
     }
 });
 
@@ -24,10 +24,10 @@ router.post("/", async (req,res) =>{ //Updating the database
         }
 
         const newTask = new Task({
-            title, description, code      //create new snippet using model created from mongoose
+            title, description, code      //create new task using model created from mongoose
         });
 
-        const savedTask = await newTask.save(); //save snippet to database but also waits for promise to be resolved and returns document 
+        const savedTask = await newTask.save(); //save task to database but also waits for promise to be resolved and returns document 
 
         res.json(savedTask);
     }
