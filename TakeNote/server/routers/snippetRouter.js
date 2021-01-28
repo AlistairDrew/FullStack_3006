@@ -6,7 +6,7 @@ router.get("/", async (req, res) =>{ //Reading from database
 
     const snippets = await Snippet.find();
     res.json(snippets);
-
+        console.log("Is this working");
     }
     catch(err){
         res.status(500).send();
