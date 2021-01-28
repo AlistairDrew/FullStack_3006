@@ -8,7 +8,7 @@ function Navbar() {
         </Link>
 
         <Link to="/chat">Chat</Link>
-        {/* <Link to="/Register">Register</Link> */}
+        
     
 
     </div>

@@ -35,7 +35,7 @@ function TaskEditor({getTasks, setTaskEditorOpen, editTaskData}){
         closeEditor();
     }
 
-    function closeEditor() {
+    function closeEditor() { //Clears the input fields and fills them with empty strings.
         setTaskEditorOpen(false);
         setEditorTitle("");
         setEditorDescription("");
@@ -45,7 +45,7 @@ function TaskEditor({getTasks, setTaskEditorOpen, editTaskData}){
 
     return <div className="Name">
         <div className="task-editor">
-                <form onSubmit={saveTask}>
+                <form onSubmit={saveTask}> //Different input fields for title, description and Note.
                     <label htmlFor="editor-title">Title</label>
                     <input 
                     id="editor-title" 
@@ -66,7 +66,7 @@ function TaskEditor({getTasks, setTaskEditorOpen, editTaskData}){
                     value={editorNote}
                     onChange={(e) => setEditorNote(e.target.value)}/>
 
-                <button type="submit">Save Task</button>
+                <button type="submit">Save Task</button> 
                 <button type="button" onClick={closeEditor}>Cancel</button>
                 </form>
             </div>

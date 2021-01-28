@@ -23,8 +23,7 @@ function Home() {
         setTaskEditorOpen(true);
     }
 
-    function renderTasks() {
-
+    function renderTasks() { //renders the tasks to the frontend so they can be seen 
         let sortedTasks = [...tasks];
         sortedTasks = sortedTasks.sort((a, b) =>{
             return new Date(b.createdAt) - new Date(a.createdAt);
@@ -36,13 +35,8 @@ function Home() {
             />
         });
     }
-
-    
-
-    
-
     return (
-        <div className="home">
+        <div className="home"> //Button that adds a task
             {!taskEditorOpen && ( 
             <button onClick={() => setTaskEditorOpen(true)}>
                 Add task
