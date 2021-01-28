@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import Snippet from "./Snippet";
-//import { renderIntoDocument } from "react-dom/test-utils";
+import TaskEditor from "./TaskEditor";
 
 function Home() {
     const [snippets, setSnippets] = useState([]);
-    const [newSnippetEditorOpen, setNewSnippetEditorOpen] = useState(false);
-    const [editorTitle, setEditorTitle] = useState("")
-    const [editorDescription, setEditorDescription] = useState("")
-    const [editorCode, setEditorCode] = useState("")
-
+    const [snippetEditorOpen, setSnippetEditorOpen] = useState(false);
+    const [editTaskData, setEditTaskData] = useState(null);
 
     useEffect(() => {
         //Get snippets 
@@ -21,55 +18,42 @@ function Home() {
         setSnippets(snippetsRes.data);
     }
 
+    function editTask(snippetData){
+        setEditTaskData(snippetData);
+        setSnippetEditorOpen(true);
+    }
+
     function renderSnippets() {
-        return snippets.map((snippet, i) => {
-            return <Snippet key={i} snippet={snippet} />
+
+        let sortedSnippets = [...snippets];
+        sortedSnippets = sortedSnippets.sort((a, b) =>{
+            return new Date(b.createdAt) - new Date(a.createdAt);
+        })
+
+        return sortedSnippets.map((snippet, i) => {
+            return <Snippet key={i} snippet={snippet} getSnippets={getSnippets} 
+            editTask={editTask}
+            />
         });
     }
 
-    async function saveSnippet(e){
-        e.preventDefault();
-        
-        const snippetData={
-            title: editorTitle ? editorTitle : undefined, //prevents empty strings from being put into the database
-            description: editorDescription ? editorDescription : undefined,
-            code: editorCode ? editorCode : undefined
-        };
+    
 
-        await Axios.post("http://localhost:5000/snippet", snippetData);
-    }
+    
 
     return (
         <div className="home">
-            {!newSnippetEditorOpen && ( <button onClick={() => setNewSnippetEditorOpen(true)}>
+            {!snippetEditorOpen && ( 
+            <button onClick={() => setSnippetEditorOpen(true)}>
                 Add snippet
             </button>
             )}
-            {setNewSnippetEditorOpen && (<div className="snippet-editor">
-                <form onSubmit={saveSnippet}>
-                    <label htmlFor="editor-title">Title</label>
-                    <input 
-                    id="editor-title" 
-                    type="text" 
-                    value={editorTitle}
-                    onChange={(e) => setEditorTitle(e.target.value)}/>
-
-                    <label htmlFor="editor-description">Description</label>
-                    <input 
-                    id="editor-description" 
-                    type="text" 
-                    value={editorDescription}
-                    onChange={(e) => setEditorDescription(e.target.value)}/>
-
-                    <label htmlFor="editor-code">Code</label>
-                    <textarea 
-                    id="editor-code" 
-                    value={editorCode}
-                    onChange={(e) => setEditorCode(e.target.value)}/>
-
-                <button type="submit">Save Task</button>
-                </form>
-            </div>
+            {snippetEditorOpen && (
+                <TaskEditor 
+                setNewSnippetEditorOpen={setSnippetEditorOpen}
+                getSnippets={getSnippets}
+                editTaskData={editTaskData}
+                />
             )}
             {renderSnippets()}
         </div>
